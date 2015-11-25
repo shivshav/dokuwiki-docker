@@ -23,6 +23,7 @@ docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data /var/www/conf/local.prot
 docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data /var/www/conf/plugins.local.php
 docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data /var/www/conf/acl.auth.php
 
+docker restart wiki
 #chown -R www-data:www-data ${BASEDIR}/local.php
 #chown -R www-data:www-data ${BASEDIR}/users.auth.php
 #chown -R www-data:www-data ${BASEDIR}/local.protected.php
