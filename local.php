@@ -8,7 +8,6 @@
 
 $conf['title'] = 'wiki';
 $conf['license'] = 'cc-by-sa';
-$conf['basedir'] = '/wiki/';
 $conf['useacl'] = 1;
 $conf['superuser'] = '@admin';
 $conf['disableactions'] = 'register';
