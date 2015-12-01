@@ -1,17 +1,22 @@
 <?php
 
+# Nginx Proxy Config
 $conf['basedir'] = '/{DOKUWIKI_URI}/';
 
-## LDAP configuration
+# Basic Auth Configurations
 $conf['useacl']      = 1;
 $conf['openregister']= 0;
-$conf['authtype']    = 'authldap';
+$conf['superuser'] = 'admin,@admin';
+$conf['disableactions'] = 'register,resendpwd,profile_delete';
  
-$conf['auth']['ldap']['server']      = '{LDAP_SERVER}';
-$conf['auth']['ldap']['port']        = 389;
-$conf['auth']['ldap']['usertree']    = '{LDAP_ACCOUNTBASE}';
-$conf['auth']['ldap']['userfilter']  = '(&(uid=%{user}))';
-#$conf['auth']['ldap']['grouptree']   = 'dc=demo,dc=com';
-#$conf['auth']['ldap']['groupfilter'] = '(&(objectClass=posixGroup)(uniqueMember=%{dn}))';
-$conf['auth']['ldap']['version']  = 3;
+## LDAP configuration
+$conf['authtype']    = 'authldap';
 
+$conf['plugin']['authldap']['server']      = '{LDAP_SERVER}';
+$conf['plugin']['authldap']['port']        = 389;
+$conf['plugin']['authldap']['usertree']    = '{LDAP_ACCOUNTBASE}';
+$conf['plugin']['authldap']['userfilter']  = '(&(uid=%{user}))';
+#$conf['plugin']['authldap']['grouptree']   = 'dc=demo,dc=com';
+#$conf['plugin']['authldap']['groupfilter'] = '(&(objectClass=posixGroup)(uniqueMember=%{dn}))';
+$conf['plugin']['authldap']['version']  = 3;
+$conf['plugin']['authldap']['modPass'] = 0;
