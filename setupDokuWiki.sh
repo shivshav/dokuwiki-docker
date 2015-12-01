@@ -20,12 +20,8 @@ docker cp ${BASEDIR}/local.php ${DOKUWIKI_NAME}:${CONF_DIR}/local.php
 docker cp ${BASEDIR}/plugins.local.php ${DOKUWIKI_NAME}:${CONF_DIR}/plugins.local.php
 docker cp ${BASEDIR}/acl.auth.php ${DOKUWIKI_NAME}:${CONF_DIR}/acl.auth.php
 
-docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data ${CONF_DIR}/*.php
+# Give ownership of all configs to www-data for internal nginx server
+docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data ${CONF_DIR}/
 
-#docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data ${CONF_DIR}/local.php
-#docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data ${CONF_DIR}/users.auth.php
-#docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data ${CONF_DIR}/local.protected.php
-#docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data ${CONF_DIR}/plugins.local.php
-#docker exec ${DOKUWIKI_NAME} chown -R www-data:www-data ${CONF_DIR}/acl.auth.php
-
+# Restart for php5-ldap installation to take effect
 docker restart ${DOKUWIKI_NAME}
