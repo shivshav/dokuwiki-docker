@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-DOKUWIKI_NAME=${1:-wiki}
-DOKUWIKI_VOLUME=${2:-wiki-volume}
+DOKUWIKI_NAME=${1:-dokuwiki}
+DOKUWIKI_VOLUME=${2:-dokuwiki-volume}
 DOKUWIKI_IMAGE_NAME=${3:-istepanov/dokuwiki}
 LDAP_SERVER=${4:-127.0.0.1}
 
