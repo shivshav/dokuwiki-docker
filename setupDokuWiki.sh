@@ -6,7 +6,7 @@ LDAP_ACCOUNTBASE=${3:-ou=accounts, dc=demo, dc=com}
 
 BASEDIR=$(readlink -f $(dirname $0))
 docker exec ${DOKUWIKI_NAME} apt-get update
-docker exec ${DOKUWIKI_NAME} apt-get install php5-ldap
+docker exec ${DOKUWIKI_NAME} apt-get install -y php5-ldap
 
 LOCAL_PROTECTED_PHP=local.protected.php
 sed -e "s/{DOKUWIKI_URI}/${DOKUWIKI_NAME}/g" ${BASEDIR}/${LOCAL_PROTECTED_PHP}.template > ${BASEDIR}/${LOCAL_PROTECTED_PHP}
