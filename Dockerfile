@@ -3,28 +3,33 @@ MAINTAINER shivshav@demo.com
 
 RUN apt-get update && apt-get install -y php5-ldap
 
+ENV LDAP_SERVER openldap
+ENV LDAP_ACCOUNTBASE ou=accounts,dc=demo,dc=com
+ENV BASE_URI dokuwiki
 
-#CONF_DIR=/var/dokuwiki-storage/conf
+ENV CONF_DIR /var/dokuwiki-storage/conf
 
 # Sets the admin password and email (needs parameterization)
-COPY users.auth.php /var/dokuwiki-storage/conf
+COPY users.auth.php $CONF_DIR
 
 # Sets title and license. Do we even need this? Yes we do if we want to avoid the install.php initialization
-COPY local.php /var/dokuwiki-storage/conf
+COPY local.php $CONF_DIR
 
 # Sets the authentication to be ldap-based. Non-parameterized
-COPY plugins.local.php /var/dokuwiki-storage/conf
+COPY plugins.local.php $CONF_DIR
 
 # Absolutely necessary and but not parameterized as of yet
-COPY acl.auth.php /var/dokuwiki-storage/conf
+COPY acl.auth.php $CONF_DIR
 
 # Heavily parameterized and absolutely necessary
-#COPY local.protected.php /var/dokuwiki-storage/conf
+COPY local.protected.php.template /
 
+COPY start.sh /
+RUN chmod +x start.sh
 
 ## Copy php files onto system image (or manipulate them with sed?) 
 ## Set env vars and retrieve them for parameterized php files
 
-RUN chown -R www-data:www-data /var/dokuwiki-storage/conf
+RUN chown -R www-data:www-data $CONF_DIR
 
 ## El Fin
