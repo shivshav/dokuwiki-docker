@@ -22,7 +22,7 @@ COPY users.auth.php local.php plugins.local.php acl.auth.php $CONF_DIR/
 #COPY acl.auth.php $CONF_DIR
 
 # Heavily parameterized and absolutely necessary
-COPY local.protected.php.template dokuwiki-start.sh /
+COPY local.protected.php.template start.sh /
 
 RUN mkdir /first-run.d/
 COPY ci-conf.sh /first-run.d/
