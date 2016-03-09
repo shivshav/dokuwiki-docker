@@ -2,8 +2,9 @@ set -e
 
 FIRST_RUN_DIR=/first-run.d
 
-for file in $FIRST_RUN_DIR; do
-    $FIRST_RUN_DIR/$file
+for file in $FIRST_RUN_DIR/*.sh; do
+    $file
+    rm $file
 done
 
 #LOCAL_PROTECTED_PHP=local.protected.php
